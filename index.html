@@ -2,77 +2,121 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Piskel clone</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id"
+    content="1057436972658-b5os3do637hrq0d32qibn95rutjrvi1c.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Piskel clone</title>
+  <link rel="stylesheet" href="./src/style.css">
 </head>
 
-<body id="general" class="general">
-    <header class="header">
-        <h1 class="headline">Piskel-clone</h1>
-    </header>
-    <main class="container">
-        <div class="container__instruments">
-            <ul class="instruments__buttons">
-                <li class="rim-buttons"><button class="instruments__buttons--pen buttons instrument">
-                        Pen</button></li>
-                <li class="rim-buttons"> <button class="instruments__buttons--color-select buttons instrument">
-                        Color select</button></li>
-                <li class="rim-buttons"><button class="instruments__buttons--paint-bucket buttons instrument">
-                        Paint bucket</button></li>
-                <li class="rim-buttons"><button class="instruments__buttons--ereser buttons instrument">
-                        Ereser</button></li>
-                <li class="rim-buttons"><button class="instruments__buttons--stroke buttons instrument">
-                        Stroke</button></li>
-                <li class="rim-buttons"><button class="instruments__buttons--circle buttons instrument">
-                        Circle</button></li>
-                <li class="rim-buttons"><button class="instruments__buttons--move buttons instrument">
-                        Move</button></li>
-                <li class="rim-buttons"><button class="instruments__buttons--shape-selection buttons instrument">
-                        Shape selection</button></li>
-                <li class="rim-buttons"><button class="instruments__buttons--lighten buttons instrument">
-                        Lighten</button></li>
-                <li class="rim-buttons"><button class="instruments__buttons--dithering buttons instrument">
-                        Dithering</button></li>
-            </ul>
-            <div class="instrument__colors">
-                <canvas class="instruments__colors--color" width="185px" height="159px"></canvas>
-            </div>
-        </div>
-        <div class="container__pages">
-            <ul class="pages__page-operations">
-                <li class="rim-buttons"><button class="pages__page-operations--add-page buttons">Add page</button></li>
-                <canvas class="pages__page-operations--page none" width="128px" height="128px"></canvas>
-                <li class="rim-buttons"><button class="pages__page-operations--del-page buttons">Delete page</button>
-                </li>
-            </ul>
-        </div>
-        <div class="container__canvas">
-            <div class="canvas__general">
-                <ul class="general__canvas-size">
-                    <h2 class="general__canvas-size--text">Before you start, select the size of the canvas</h2>
-                    <li class="rim-buttons"><button class="general__canvas-size--32x32 buttons" id="1">32x32</button>
-                    </li>
-                    <li class="rim-buttons"><button class="general__canvas-size--64x64 buttons">64x64</button></li>
-                    <li class="rim-buttons"><button class="general__canvas-size--128x128 buttons">128x128</button></li>
-                </ul>
-                <canvas class="canvas__general--working-canvas none" width="768px" height="768px"></canvas>
-            </div>
-        </div>
-        <div class="container__animation">
-            <canvas class="container__animation--canvas none" width="256px" height="256px"></canvas>
-            <input type="range" class="container__animation--fps">
-            <ul>
-                <li class="rim-buttons"><button class="container__animation--start-animatin buttons">Start
-                        animation</button></li>
-                <li class="rim-buttons"><button class="container__animation--stop-animation buttons">Stop
-                        animation</button></li>
-                <li class="rim-buttons"><button class="container__animation--import buttons">Import</button></li>
-            </ul>
-        </div>
-    </main>
+<body id="general" class="general" oncontextmenu="return false;">
+  <header class="header">
+    <h1 class="headline">Piskel-clone</h1>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <a class="signOut none" href="#">Sign out</a>
+  </header>
+  <main class="landing">
+    <div class="landing__preview">
+      <img class="back" src="src/img/animation.gif" alt="">
+      <ul class="general__canvas-size">
+        <h2 class="general__canvas-size--text">Before you start, select the size of the
+          canvas or upload your old session</h2>
+        <li class="rim-buttons"><button class="general__canvas-size--32x32 buttons" id="1">32x32</button>
+        </li>
+        <li class="rim-buttons"><button class="general__canvas-size--64x64 buttons">64x64</button></li>
+        <li class="rim-buttons"><button class="general__canvas-size--128x128 buttons">128x128</button>
+        </li>
+        <li class="rim-buttons"><button class="general__canvas-size--load buttons">Load</button>
+        </li>
+      </ul><span></span>
+      <p class="landing__preview--description">With this pixel editor, you can create beautiful animations. The editor
+        is equipped with handy tools; frame by frame, draw your animation. Intuitive and intuitive interface to work
+        with the application will facilitate your task. Save, upload your finished animations in GIF format. If you are
+        visiting a resource for the first time, then you need to choose the <span>Size</span> of your canvas
+        <span>(32x32b 64x64, 128x128)</span>,
+        or load your project from the previous session with the button <span>Load</span>.</p>
+    </div>
+    <div class="landing__description"></div>
+  </main>
+  <main class="container none">
+    <div class="container__instruments">
+      <ul class="instruments__buttons">
+        <li class="rim-buttons"><button class="instruments__buttons--pen buttons instrument">
+            Pen (p)</button></li>
+        <li class="rim-buttons"> <button class="instruments__buttons--color-select buttons instrument">
+            Color select (c)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--paint-bucket buttons instrument">
+            Paint bucket (b)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--ereser buttons instrument">
+            Ereser (e)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--stroke buttons instrument">
+            Stroke (s)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--circle buttons instrument">
+            Circle (o)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--move buttons instrument">
+            Move (m)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--lighten buttons instrument">
+            Lighten (l)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--dithering buttons instrument">
+            Dithering (d)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--rectangle buttons instrument">
+            Rectangle (r)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--draw-color buttons instrument">
+            Draw color (w)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--to-clear buttons instrument">
+            To clear (t)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--change-background buttons instrument">
+            Swap background (k)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--random-pen buttons instrument">
+            Random pen (x)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--inversion buttons instrument">
+            Inversion (i)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--mirroring buttons instrument">
+            Mirroring (g)</button></li>
+        <li class="rim-buttons"><button class="instruments__buttons--change-key buttons">
+            Change key</button></li>
+      </ul>
+      <div class="instrument__colors">
+        <input class="instrument__colors--input none" type="color">
+        <button class="instruments__colors--new-color"></button>
+        <button class="instruments__colors--old-color"></button>
+      </div>
+      <div class="coords"></div>
+    </div>
+    <div class="container__pages">
+      <ul class="pages__page-operations">
+        <li class="pages__page-operations--add-page rim-buttons"><button class="buttons">Add
+            page</button></li>
+        <canvas class="pages__page-operations--page none" width="128px" height="128px"></canvas>
+        <li class="pages__page-operations--del-page rim-buttons"><button class=" buttons">Delete
+            page</button>
+        </li>
+        <li class="pages__page-operations--clone-page rim-buttons"><button class=" buttons">Clone
+            page</button>
+        </li>
+      </ul>
+    </div>
+    <div class="container__canvas">
+      <div class="canvas__general">
+        <canvas class="canvas__general--working-canvas none" width="768px" height="768px"></canvas>
+      </div>
+    </div>
+    <div class="container__animation">
+      <canvas class="container__animation--canvas none" width="256px" height="256px"></canvas>
+      <input type="range" class="container__animation--fps" min="0" max="25" value="10">
+      <ul>
+        <li class="rim-buttons"><button class="container__animation--full-screen buttons">Full
+            screen</button></li>
+        <li class="rim-buttons"><button class="container__animation--export buttons">Export</button></li>
+        <li class="rim-buttons"><button class="container__animation--save buttons">Save</button></li>
+      </ul>
+    </div>
+  </main>
+  <script src="src/controllers/signIn.js"></script>
 <script type="text/javascript" src="app.bundle.js"></script></body>
 
 </html>
